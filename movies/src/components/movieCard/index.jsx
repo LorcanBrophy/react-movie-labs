@@ -11,11 +11,8 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
-
 import { Link } from "react-router";
-
 import Avatar from '@mui/material/Avatar';
-
 import { useContext } from "react";
 import { MoviesContext } from "../../contexts/moviesContext";
 
@@ -81,7 +78,9 @@ export default function MovieCard({ movie, action }) {
             
       <CardActions disableSpacing>
         
-        {action(movie)}
+        
+        {action && action(movie)}
+
       
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
