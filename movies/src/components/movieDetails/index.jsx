@@ -7,6 +7,11 @@ import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 
+import { useState } from "react";
+import Drawer from "@mui/material/Drawer";
+import MovieReviews from "../movieReviews"
+
+
 
 const root = {
     display: "flex",
@@ -18,8 +23,8 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ( props) => {
-  const movie = props.movie
+const MovieDetails = ({ movie }) => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <>
@@ -59,15 +64,21 @@ const MovieDetails = ( props) => {
       <Fab
         color="secondary"
         variant="extended"
+        onClick={() =>setDrawerOpen(true)}
         sx={{
-            position: "fixed",
-            bottom: 2,
-            right: 2
+          position: 'fixed',
+          bottom: '1em',
+          right: '1em'
         }}
       >
         <NavigationIcon />
         Reviews
       </Fab>
+
+      <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+        <MovieReviews movie={movie} />
+      </Drawer>
+
       </>
   );
 };
