@@ -27,6 +27,10 @@ const SiteHeader = () => {
     { label: "Home", path: "/" },
     { label: "Favorites", path: "/movies/favorites" },
     { label: "Upcoming", path: "/movies/upcoming" },
+    { label: "Top Rated", path: "/movies/top_rated" },
+    { label: "In Cinema", path: "/movies/now_playing" },
+    { label: "Underrated", path: "/movies/underrated" },
+    { label: "Watch Later", path: "/movies/watch_later" },
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -44,9 +48,6 @@ const SiteHeader = () => {
         <Toolbar>
           <Typography variant="h4" sx={{ flexGrow: 1 }}>
             TMDB Client
-          </Typography>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            All you ever wanted to know about Movies!
           </Typography>
             {isMobile ? (
               <>

@@ -7,9 +7,16 @@ import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
+
+import Grid from "@mui/material/Grid";
+import MovieCard from "../movieCard";
+import { getSimilarMovies } from "../../api/tmdb-api";
+import { getCredits } from "../../api/tmdb-api";
+import MovieList from "../movieList";
+
 
 
 
@@ -25,6 +32,16 @@ const chip = { margin: 0.5 };
 
 const MovieDetails = ({ movie }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [similarMovies, setSimilarMovies] = useState([]);
+  const [cast, setCast] = useState([]);
+
+  useEffect(() => {
+    getSimilarMovies(movie.id).then((movies) => setSimilarMovies(movies));
+  }, [movie.id]);
+
+  useEffect(() => {
+    getCredits(movie.id).then((cast) => setCast(cast));
+  }, [movie.id]);
 
   return (
     <>
@@ -76,6 +93,27 @@ const MovieDetails = ({ movie }) => {
           </li>
         ))}
       </Paper>
+
+        
+        <Paper component="ul" sx={{ ...root }}>
+          <li>
+            <Chip label="Cast" sx={{ ...chip }} color="primary" />
+          </li>
+          {cast.slice(0, 12).map((actor) => (
+            <li key={actor.id}>
+              <Chip label={actor.name} sx={{ ...chip }} />
+            </li>
+          ))}
+        </Paper>
+
+
+
+
+      <Typography variant="h5" sx={{ mt: 2 }}>More Like This</Typography>
+
+      <Grid container spacing={2}>
+        <MovieList movies={similarMovies} action={() => null} />
+      </Grid>
       
       <Fab
         color="secondary"

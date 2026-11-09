@@ -8,7 +8,17 @@ import SiteHeader from './components/siteHeader'
 import UpcomingMoviesPage from "./pages/upcomingMoviesPage";
 import MoviesContextProvider from "./contexts/moviesContext";
 
-import AddMovieReviewPage from './pages/addMovieReviewPage'
+import AddMovieReviewPage from './pages/addMovieReviewPage';
+
+import TopRatedMoviesPage from './pages/topRatedMoviesPage';
+import InCinemaPage from './pages/inCinemaPage';
+import UnderratedMoviesPage from './pages/underratedMoviesPage';
+import WatchLaterPage from './pages/watchLaterPage';
+
+
+
+
+
 
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
@@ -39,6 +49,11 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/reviews/form" element={ <AddMovieReviewPage /> } />
+            <Route path="/movies/top_rated" element={ <TopRatedMoviesPage /> } />
+            <Route path="/movies/now_playing" element={ <InCinemaPage /> } />
+            <Route path="/movies/underrated" element={ <UnderratedMoviesPage /> } />
+            <Route path="/movies/watch_later" element={<WatchLaterPage />} />
+
 
           </Routes>
         </MoviesContextProvider>

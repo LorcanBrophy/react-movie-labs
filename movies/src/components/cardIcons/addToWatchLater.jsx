@@ -3,20 +3,20 @@ import { MoviesContext } from "../../contexts/moviesContext";
 import IconButton from "@mui/material/IconButton";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
-const AddToPlaylist = ({ movie }) => {
+const AddToWatchLater = ({ movie }) => {
 
   const context = useContext(MoviesContext);
 
-  const handleAddToPlaylist = (e) => {
+  const handleAddToWatchLater = (e) => {
     e.preventDefault();
-    context.addToPlaylist(movie);
+    context.addToWatchLater(movie);
   };
   
   return (
-    <IconButton aria-label="add to playlist" onClick={handleAddToPlaylist}>
+    <IconButton aria-label="add to playlist" onClick={handleAddToWatchLater}>
       <PlaylistAddIcon color="primary" fontSize="large" />
     </IconButton>
   );
 };
 
-export default AddToPlaylist;
+export default AddToWatchLater;
